@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1.title Contratos
+
+  div.w3-responsive
+    table.w3-table.w3-striped.w3-bordered
+      thead.w3-teal
+        tr
+          th ID
+          th Objeto do Contrato
+          th Data de Celebração
+          th Preço Contratual
+          th NIPC
+          th Entidade Comunicante
+      tbody
+        each contrato in contratos
+          tr(class=index % 2 === 0 ? 'w3-light-grey' : '')
+            td
+              a(href=`/${contrato.idcontrato}`) #{contrato.idcontrato}
+            td #{contrato.objectoContrato}
+            td #{contrato.dataCelebracaoContrato}
+            td #{contrato.precoContratual}
+            td
+              a(href=`/entidades/${contrato.NIPC_entidade_comunicante}`) #{contrato.NIPC_entidade_comunicante}
+            td #{contrato.entidade_comunicante}

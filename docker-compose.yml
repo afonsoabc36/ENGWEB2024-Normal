@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017"  # Mapa a porta 27018 do host (mongo instalado localmente) para a porta 27017 do container
+    volumes:
+      - mongo_data:/data/db
+  
+  mongo-seed:
+    image: mongo
+    depends_on:
+      - mongo
+    volumes:
+      - ./contratos2024.json:/contratos2024.json:ro
+    entrypoint: ["mongoimport", "--host=mongo", "--db=contratos", "--collection=contratos", "--type=json", "--file=/contratos2024.json", "--jsonArray"]
+
+  api:
+    build:
+      context: ./ex1
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URL=mongodb://mongo:27017/contratos
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./ex2
+    ports:
+      - "16001:16001"
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://api:3000
+    depends_on:
+      - api
+
+volumes:
+  mongo_data:

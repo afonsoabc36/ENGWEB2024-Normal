@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1.w3-text-teal #{entidade} (#{entidadeNIPC})
+    h3 Total dos Contratos: #{total}€
+
+    div.w3-responsive
+      table.w3-table.w3-striped.w3-bordered
+        thead.w3-teal
+          tr
+            th ID do Contrato
+            th Objeto
+            th Data de Celebração
+            th Preço Contratual
+        tbody
+          each contrato in contratos
+            tr
+              td
+                a(href=`/${contrato.idcontrato}`) #{contrato.idcontrato}
+              td #{contrato.objectoContrato}
+              td #{contrato.dataCelebracaoContrato}
+              td #{contrato.precoContratual}€
+              
+    // Link para voltar à página principal
+    a.w3-button.w3-teal(href='/') Voltar

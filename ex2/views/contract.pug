@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  div.w3-container.w3-padding-32
+    h1.w3-text-teal #{contrato.idcontrato} - Detalhes do Contrato
+    div.w3-card.w3-padding
+      p
+        strong ID do Contrato: 
+        | #{contrato.idcontrato}
+      p
+        strong Nº do Anúncio: 
+        | #{contrato.nAnuncio || 'N/A'}
+      p
+        strong Tipo de Procedimento: 
+        | #{contrato.tipoprocedimento}
+      p
+        strong Objeto do Contrato: 
+        | #{contrato.objectoContrato}
+      p
+        strong Data de Publicação: 
+        | #{contrato.dataPublicacao}
+      p
+        strong Data de Celebração do Contrato: 
+        | #{contrato.dataCelebracaoContrato}
+      p
+        strong Preço Contratual: 
+        | #{contrato.precoContratual} EUR
+      p
+        strong Prazo de Execução: 
+        | #{contrato.prazoExecucao} dias
+      p
+        strong NIPC da Entidade Comunicante: 
+        | #{contrato.NIPC_entidade_comunicante}
+      p
+        strong Entidade Comunicante: 
+        | #{contrato.entidade_comunicante}
+      p
+        strong Fundamentação: 
+        | #{contrato.fundamentacao}
+
+    a.w4-button.w3-teal(href='/') Voltar
